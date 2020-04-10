@@ -1,0 +1,116 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;\red0\green0\blue0;\red0\green0\blue0;
+\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c95825;\csgray\c0\c85000;\csgray\c0\c0;
+\cssrgb\c0\c0\c0;\csgray\c100000;}
+\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 data 589 Lab3\
+Jae Yoon Cho\
+\
+Question 1. \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs20 \cf2 \cb3 \CocoaLigature0 cqlsh> CREATE KEYSPACE IF NOT EXISTS cho_68617752 WITH replication = \{'class':'SimpleStrategy', 'replication_factor':2\};\
+cqlsh> DESCRIBE keyspaces;\cb4 \
+\
+
+\f0\fs24 \cf5 Question 2.\
+
+\f1\fs20 \cf2 \cb3 USE cho_68617752;\
+\
+CREATE TABLE students (student_ID text, student_name text, age int, major text, minor text, current_year int, cgpa float, total_credit int, skills set<text>, PRIMARY KEY(student_ID));\
+\
+INSERT INTO students(student_ID, student_name, age, major, current_year, cgpa, total_credit) VALUES ('S101', 'Alex', 19, 'Computer Science', 1, 3.85, 33);\
+\
+INSERT INTO students(student_ID, student_name, age, major, current_year, cgpa, total_credit, skills) VALUES ('S202', 'David', 23, 'Computer Science', 4, 3.63, 87, \{'Python', 'Java', 'Android'\});\
+\
+INSERT INTO students(student_ID, student_name, age, major, minor, current_year, cgpa, total_credit, skills) VALUES ('S103', 'Fred', 22, 'Computer Science', 'Math', 3, 3.76, 66, \{'Android', 'Java', 'SQL'\});\
+\
+INSERT INTO students(student_ID, student_name, age, major, minor, current_year, cgpa, total_credit, skills) VALUES ('S104', 'Alex', 24, 'Physics', 'Math', 4, 3.52, 90, \{'Android', 'Java', 'Python'\});\
+\
+INSERT INTO students(student_ID, student_name, age, major, current_year, cgpa, total_credit, skills) VALUES ('S105', 'Jane', 20, 'Biology', 2, 3.75, 27, \{'Java'\});\
+\cf5 \cb4 \
+\
+
+\f0\fs24 Question 3.\
+
+\f1\fs20 \cf2 \cb3 SELECT student_ID FROM students WHERE major = 'Computer Science' ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 4.\
+
+\f1\fs20 \cf2 \cb3 SELECT COUNT(student_name) FROM students WHERE student_name = 'Alex' ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 5.\
+
+\f1\fs20 \cf2 \cb3 SELECT student_name FROM students WHERE major = 'Computer Science' AND cgpa>3.8 ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 6.\
+
+\f1\fs20 \cf2 \cb3 SELECT COUNT(student_name) FROM students WHERE skills CONTAINS 'Java' ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 7.\
+
+\f1\fs20 \cf2 \cb3 SELECT * FROM students WHERE cgpa>3.6 AND skills CONTAINS 'Python' ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 8.\
+
+\f1\fs20 \cf2 \cb3 UPDATE STUDENTS SET skills = skills + \{'R'\} WHERE student_ID='S202';\cb4 \
+\
+\cb3 SELECT * FROM students;\cb4 \
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 {{\NeXTGraphic Pasted Graphic 1.png \width16220 \height2280 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\cf5 \cb4 \CocoaLigature0 \
+\
+Question 9.\
+
+\f1\fs20 \cf2 \cb3 UPDATE students SET skills = skills - \{'Python'\} WHERE student_ID = 'S104';\cb4 \
+\
+\cb3 SELECT * FROM students;\cb4 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 {{\NeXTGraphic Pasted Graphic 2.png \width16180 \height2160 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\cf5 \cb4 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf5 \
+Question 10.\
+
+\f1\fs20 \cf2 \cb3 SELECT avg(age) FROM students WHERE major='Computer Science' ALLOW FILTERING;
+\f0\fs24 \cf5 \cb4 \
+\
+Question 11.\
+
+\f1\fs20 \cf2 \cb3 ALTER TABLE students ADD coop set<text>;\cb6 \
+\cb3 SELECT * FROM students;\cb6 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 {{\NeXTGraphic Pasted Graphic 3.png \width17200 \height2120 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}
+\f1\fs20 \cf2 \cb4 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf5 \
+\
+Question 12.\
+
+\f1\fs20 \cf2 \cb3 UPDATE students SET coop = coop + \{'BC TREE Fruit'\} WHERE student_ID = 'S101';\cb6 \
+\cb3 SELECT * FROM students;\cb6 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 {{\NeXTGraphic Pasted Graphic 4.png \width18760 \height2240 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}
+\f1\fs20 \cf2 \cb6 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf5 \cb4 \
+\
+
+\f1\fs20 \
+}
